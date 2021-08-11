@@ -19,7 +19,7 @@ volumes:
           device: ":/grafana_data"
 configs:
    alertmanager:
-     file: ./config.yml
+     external: true
 
 services:
 
