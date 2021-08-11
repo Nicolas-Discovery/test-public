@@ -57,7 +57,7 @@ services:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
     configs:
-      - source: alertmanager.yml
+      - source: alertmanager
         target: /etc/alertmanager/config.yml
         mode: 292
     deploy:
