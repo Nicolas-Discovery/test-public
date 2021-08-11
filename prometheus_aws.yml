@@ -18,7 +18,7 @@ volumes:
           o: "addr=fs-e658dcd2.efs.eu-west-1.amazonaws.com,nfsvers=4"
           device: ":/grafana_data"
 configs:
-   myconfig:
+   alertmanager.yml:
      file: ./config.yml
 
 services:
