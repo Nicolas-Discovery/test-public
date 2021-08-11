@@ -8,14 +8,14 @@ volumes:
     prometheus_data: 
         driver_opts:
           type: "nfs"
-          o: "addr=fs-e658dcd2.efs.eu-west-1.amazonaws.com,nfsvers=4"
+          o: "addr=fs-e658dcd2.efs.eu-west-1.amazonaws.com,nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport"
           device: ":/prometheus_data"
 
     grafana_data: 
 
         driver_opts:
           type: "nfs"
-          o: "addr=fs-e658dcd2.efs.eu-west-1.amazonaws.com,nfsvers=4"
+          o: "addr=fs-e658dcd2.efs.eu-west-1.amazonaws.com,nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport"
           device: ":/grafana_data"
 configs:
    alertmanager:
@@ -54,8 +54,6 @@ services:
 
   alertmanager:
     image: prom/alertmanager
-    volumes:
-      - ./alertmanager/:/etc/alertmanager/
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
