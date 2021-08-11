@@ -18,7 +18,7 @@ volumes:
           o: "addr=fs-e658dcd2.efs.eu-west-1.amazonaws.com,nfsvers=4"
           device: ":/grafana_data"
 configs:
-   alertmanager.yml:
+   alertmanager:
      file: ./config.yml
 
 services:
@@ -59,10 +59,6 @@ services:
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
-    configs:
-      - source: alertmanager.yml
-        target: /etc/alertmanager
-        mode: 292
     deploy:
       replicas: 1
       placement:
@@ -73,6 +69,9 @@ services:
           memory: 250M
       restart_policy:
         condition: any
+    configs:
+      - source: alertmanager
+        target: /etc/alertmanager
     ports:
       - "9093:9093"
     networks:
